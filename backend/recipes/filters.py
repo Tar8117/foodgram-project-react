@@ -1,17 +1,17 @@
 from django_filters import CharFilter, FilterSet
 from django_filters.filters import BooleanFilter
 
-from .models import Ingredients, Recipe
+from .models import Ingredient, Recipe
 
 
 class RecipeFilter(FilterSet):
     tags = CharFilter(field_name='tags__slug', method='filter_tags')
-    is_favorite = BooleanFilter(method='filter_is_favorite')
+    is_favorited = BooleanFilter(method='filter_is_favorited')
     is_in_shopping_cart = BooleanFilter(method='filter_is_in_shopping_cart')
 
     class Meta:
         model = Recipe
-        fields = ('is_favorite', 'is_in_shopping_cart', 'author', 'tags')
+        fields = ('is_favorited', 'is_in_shopping_cart', 'author', 'tags')
 
     def filter_tags(self, queryset, slug, tags):
         tags = self.request.query_params.getlist('tags')
@@ -19,12 +19,14 @@ class RecipeFilter(FilterSet):
             tags__slug__in=tags
         ).distinct()
 
-    def filter_is_favorite(self, queryset, is_favorite, slug):
+    def filter_is_favorited(self, queryset, is_favorited, slug):
         user = self.request.user
         if not user.is_authenticated:
             return queryset
-        is_favorite = self.request.query_params.get('is_favorite')
-        if is_favorite:
+        is_favorited = self.request.query_params.get(
+            'is_favorited',
+        )
+        if is_favorited:
             return queryset.filter(
                 is_favorited__user=self.request.user
             ).distinct()
@@ -48,5 +50,5 @@ class IngredientNameFilter(FilterSet):
     name = CharFilter(field_name='name', lookup_expr='icontains')
 
     class Meta:
-        model = Ingredients
+        model = Ingredient
         fields = ('name',)

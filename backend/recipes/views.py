@@ -13,8 +13,8 @@ from rest_framework.viewsets import (GenericViewSet, ReadOnlyModelViewSet,
 
 from . import serializers
 from .filters import IngredientNameFilter, RecipeFilter
-from .models import (AddIngredientInRecipe, FavoriteRecipe, Ingredients,
-                     Recipe, ShoppingList, Tag)
+from .models import (AddIngredientInRec, FavoriteRecipe, Ingredient, Recipe,
+                     ShoppingList, Tag)
 from .pagination import CustomPageSizePagination
 from .permissions import AuthPostRetrieve, IsAuthorOrReadOnly
 
@@ -27,7 +27,7 @@ class TagViewSet(ReadOnlyModelViewSet):
 
 
 class IngredientViewSet(ReadOnlyModelViewSet):
-    queryset = Ingredients.objects.all()
+    queryset = Ingredient.objects.all()
     permission_classes = AllowAny
     serializer_class = serializers.IngredientReadSerializer
     permission_classes = [AllowAny]
@@ -72,7 +72,6 @@ class RecipeViewSet(
             data=data,
             context={'request': request}
         )
-
         if request.method == 'GET' and serializer.is_valid():
             FavoriteRecipe.objects.create(user=user, recipe=recipe)
             serializer = serializers.FavoriteRecipeSerializer(
@@ -132,7 +131,7 @@ class RecipeViewSet(
         shopping_list = {}
         for item in shopping_cart:
             recipe = item.recipe
-            ingredients = AddIngredientInRecipe.objects.filter(recipe=recipe)
+            ingredients = AddIngredientInRec.objects.filter(recipe=recipe)
             for ingredient in ingredients:
                 name = ingredient.ingredient.name
                 measurement_unit = ingredient.ingredient.measurement_unit
@@ -164,7 +163,7 @@ class RecipeViewSet(
             pdf.drawString(
                 50,
                 height,
-                f'{name} - {data["amount"]} {data["measurement_unit"]}'
+                f"{name} - {data['amount']} {data['measurement_unit']}"
             )
             height -= 25
         pdf.showPage()

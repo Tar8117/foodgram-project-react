@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
-from .models import AddIngredientInRecipe, Ingredients, Recipe, Tag
+from .models import AddIngredientInRec, Ingredient, Recipe, Tag
 
 
 @admin.register(Tag)
@@ -14,12 +14,12 @@ class TagAdmin(admin.ModelAdmin):
 
 
 class RecipeIngredientInLine(admin.TabularInline):
-    model = AddIngredientInRecipe
+    model = AddIngredientInRec
 
 
-@admin.register(Ingredients)
+@admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ('name', 'measure_unit')
+    list_display = ('name', 'measurement_unit')
     search_fields = ('name',)
     list_filter = ('name',)
 
