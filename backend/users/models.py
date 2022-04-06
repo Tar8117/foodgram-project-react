@@ -6,19 +6,15 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(
         'first name',
         max_length=100,
-        unique=True,
-        null=False,
+        unique=True
     )
     last_name = models.CharField(
         'last name',
         max_length=150,
-        unique=False,
-        null=False,
     )
     email = models.EmailField(
         'email address',
         unique=True,
-        null=False,
     )
 
     class Meta:
