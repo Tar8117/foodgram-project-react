@@ -209,10 +209,6 @@ class FavoriteRecipe(models.Model):
         related_name='is_favorited',
         verbose_name='Рецепт',
     )
-    added = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name='Дата добавления в избранное',
-    )
 
     class Meta:
         verbose_name = 'Избранное'
