@@ -6,7 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from backend.recipes.models import Follow
+from recipes.models import Follow
 
 from .permissions import AllowAnyGetPost, CurrentUserOrAdmin
 from .serializers import FollowSerializer, SubscribeSerializer, UserSerializer

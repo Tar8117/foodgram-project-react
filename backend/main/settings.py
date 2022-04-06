@@ -1,14 +1,10 @@
 import os
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'django-insecure-^+u!w3*wvr&416$y@$1rlq-9txc&n213!cjj)kjp3pb*f8jla1'
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -24,8 +20,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'djoser',
-    'recipes.apps.RecipesConfig',
-    'users.apps.UsersConfig',
+    'users',
+    'recipes',
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser'
@@ -85,8 +81,7 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME':
-            'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
         'NAME':
@@ -105,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -116,7 +111,7 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 MEDIA_URL = '/media/'
 

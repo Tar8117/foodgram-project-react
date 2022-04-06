@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
 
-from backend.users.serializers import UserSerializer
+from users.serializers import UserSerializer
 
 from .fields import Base64ImageField
 from .models import (AddIngredientInRec, FavoriteRecipe, Ingredient, Recipe,
