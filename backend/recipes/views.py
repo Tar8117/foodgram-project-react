@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
@@ -126,23 +127,18 @@ class RecipeViewSet(
         permission_classes=[IsAuthenticated]
     )
     def download_shopping_cart(self, request):
-        user = request.user
-        shopping_cart = user.is_in_shopping_cart.all()
-        shopping_list = {}
-        for item in shopping_cart:
-            recipe = item.recipe
-            ingredients = AddIngredientInRec.objects.filter(recipe=recipe)
-            for ingredient in ingredients:
-                name = ingredient.ingredient.name
-                measurement_unit = ingredient.ingredient.measurement_unit
-                amount = ingredient.amount
-                if name not in shopping_list:
-                    shopping_list[name] = {
-                        'measurement_unit': measurement_unit,
-                        'amount': amount
-                    }
-                else:
-                    shopping_list[name]['amount'] += amount
+        shopping_list = AddIngredientInRec.objects.filter(
+            recipe__is_in_shopping_cart__user=request.user).values(
+            'ingredient__name',
+            'ingredient__measurement_unit'
+        ).annotate(amount=Sum('amount'))
+        result_sale = ''
+        for ingredient in shopping_list:
+            result_sale += (
+                f'{ingredient["ingredient__name"]} - '
+                f'{str(ingredient["amount"])} - '
+                f'{ingredient["ingredient__measurement_unit"]}. '
+            )
         file_name = 'СПИСОК ПОКУПОК'
         doc_title = 'СПИСОК ПОКУПОК ДЛЯ РЕЦЕПТОВ'
         title = 'СПИСОК ПОКУПОК'
