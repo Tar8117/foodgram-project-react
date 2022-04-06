@@ -1,7 +1,7 @@
 # Foodgram «Продуктовый помощник»
 ![example workflow](https://github.com/Tar8117/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
 
-«Foodgram» - это очень удобный и полезный сервис, где пользователи могут публиковать разные рецепты, подписываться на публикации других польователей и добавлять понравившиеся рецепты в избранное.
+«Foodgram» - это очень удобный и полезный сервис, где пользователи могут публиковать разные рецепты, подписываться на публикации других пользователей и добавлять понравившиеся рецепты в избранное.
 Самой главной особенностью Foodgram является возможность добавлять рецепты в «Список покупок» и скачать список продуктов для нужного рецепта в формате PDF .
 Foodgram включает в себя онлайн-сервис и API для него.
 
@@ -26,7 +26,7 @@ https://github.com/Tar8117/foodgram-project-react.git
 git@github.com:Tar8117/foodgram-project-react.git
 ```
 
-На сервере проекта установить `doker` и `docker-compose`:
+На сервере проекта установить `docker` и `docker-compose`:
 ```bash 
 sudo apt install docker.io 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
