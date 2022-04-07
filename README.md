@@ -26,15 +26,15 @@ https://github.com/Tar8117/foodgram-project-react.git
 git@github.com:Tar8117/foodgram-project-react.git
 ```
 
-На сервере проекта установить `docker` и `docker-compose`:
+На своём сервере установите `docker` и `docker-compose`:
 ```bash 
 sudo apt install docker.io 
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-Скопировать содержимое из файлов `infra/docker-compose.yaml` и `infra/nginx.conf` на сервер в `home/<ваш_username>/docker-compose.yaml` и `home/<ваш_username>/nginx/default.conf` соответственно.
-Не забудьте на вашем сервере предварительно создать файлы `docker-compose.yaml` и `nginx/default.conf` с помощью команды `touch`.
+Скопировать содержимое из файлов `infra/docker-compose.yml` и `infra/nginx.conf` на сервер в `home/<ваш_username>/docker-compose.yml` и `home/<ваш_username>/nginx/default.conf` соответственно.
+Не забудьте на вашем сервере предварительно создать файлы `docker-compose.yml` и `nginx/default.conf` с помощью команды `touch`.
 Также создайте файл `.env` со своими переменными окружения в `home/<ваш_username>/.env`
 
 Пример заполнения `.env`:
