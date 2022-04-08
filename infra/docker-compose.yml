@@ -10,7 +10,7 @@ services:
     restart: always
 
   frontend:
-    image: taron8117/foodgram_frontend:v2
+    image: taron8117/foodgram_frontend:v1
     volumes:
       - result_build:/app/result_build/build
 
