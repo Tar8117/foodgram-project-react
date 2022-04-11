@@ -137,7 +137,7 @@ class AddIngredientInRec(models.Model):
         Ingredient,
         on_delete=models.CASCADE,
         related_name='amounts',
-        verbose_name='Ингридиент',
+        verbose_name='Ингредиент',
     )
     recipe = models.ForeignKey(
         Recipe,
@@ -152,7 +152,7 @@ class AddIngredientInRec(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Количество'
+        verbose_name = 'ингредиент'
         constraints = [
             models.UniqueConstraint(
                 fields=['recipe', 'ingredient'],
