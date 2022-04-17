@@ -68,7 +68,7 @@ class UserViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     @action(detail=True,
-            methods=['get', 'delete'],
+            methods=['post', 'delete'],
             permission_classes=[IsAuthenticated])
     def subscribe(self, request, pk):
         author = get_object_or_404(User, pk=pk)
@@ -81,7 +81,7 @@ class UserViewSet(viewsets.ModelViewSet):
             data=data,
             context={'request': request}
         )
-        if request.method == 'GET' and serializer.is_valid():
+        if request.method == 'POST' and serializer.is_valid():
             Follow.objects.create(user=user, author=author)
             serializer = UserSerializer(
                 author,
