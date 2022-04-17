@@ -1,11 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from djoser.serializers import SetPasswordSerializer
-from recipes.models import Follow
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+
+from recipes.models import Follow
 
 from .permissions import AllowAnyGetPost, CurrentUserOrAdmin
 from .serializers import FollowSerializer, SubscribeSerializer, UserSerializer
@@ -96,4 +97,4 @@ class UserViewSet(viewsets.ModelViewSet):
             Follow.objects.filter(user=user, author=author).delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
-        # return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
