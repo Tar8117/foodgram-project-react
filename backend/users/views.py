@@ -96,4 +96,4 @@ class UserViewSet(viewsets.ModelViewSet):
             Follow.objects.filter(user=user, author=author).delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
 
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        # return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
