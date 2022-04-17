@@ -50,7 +50,7 @@ class UserViewSet(viewsets.ModelViewSet):
             return Response(data={}, status=status.HTTP_201_CREATED)
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False,
+    @action(detail=True,
             methods=['get'],
             permission_classes=[IsAuthenticated])
     def subscriptions(self, request):

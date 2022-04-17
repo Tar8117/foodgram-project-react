@@ -91,7 +91,7 @@ class RecipeViewSet(
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     @action(detail=True,
-            methods=['get', 'delete'],
+            methods=['POST', 'delete'],
             permission_classes=[IsAuthenticated])
     def shopping_cart(self, request, pk):
         recipe = get_object_or_404(Recipe, pk=pk)
@@ -104,7 +104,7 @@ class RecipeViewSet(
             data=data,
             context={'request': request}
         )
-        if request.method == 'GET' and serializer.is_valid():
+        if request.method == 'POST' and serializer.is_valid():
             ShoppingList.objects.create(user=user, recipe=recipe)
             serializer = serializers.FavoriteRecipeSerializer(
                 recipe,
