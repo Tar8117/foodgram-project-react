@@ -49,14 +49,31 @@ DB_PORT=5432
 Запуск `docker-compose`:
 ```bash
 docker-compose up -d --build
+```
+Сделать миграции:
+```
 docker-compose exec backend python manage.py makemigrations --noinput
 docker-compose exec backend python manage.py migrate --noinput
-docker-compose exec backend python manage.py createsuperuser
-docker-compose exec backend python manage.py collectstatic --no-input 
 ```
+Создать суперпользователя:
+```
+docker-compose exec backend python manage.py createsuperuser
+```
+Собрать статику:
+```
+docker-compose exec backend python manage.py collectstatic --no-input
+```
+Заполнить базу ингредиентами и тестовыми рецептами:
+```
+docker-compose exec backend python manage.py load_ingredients
+docker-compose exec backend python manage.py loaddata db.json
+```
+Либо можно самому зарегистрировать пользователя и создать рецепты.
+
+Также, необязательно запускать проект на своём сервере. Проект доступен
+по адресам, представленным ниже.
+
 ---
-ДЛЯ ревью: А это же я пишу инструкцию для стороннего человека,
-чтобы он у себя запустил
 
 Доступно по адресам:
 
@@ -64,20 +81,12 @@ http://178.154.198.108/
 
 http://postmediagram.ru/
 
-Вход на сайт:
-Логин/email: test@test.com
-Пароль: test
+Админка доступна по адресам:
 
+http://178.154.198.108/admin
 
-Вход в админку:
-Логин: test1
-Пароль: test1
+http://postmediagram.ru/admin
 
-ДЛЯ ревью: у меня ощущение что один суперюзер перекрывает предыдущий.
-После создания нового, по старым суперюзерам не могу войти,
-при это создать с таким же именем что и было не дает. Такое возможно?
-Если да то куда копать чтобы исправить?
-А еще не грузится статика в админке, перебробовал все что мог(
 Автор:
 github.com/Tar8117
 ---
