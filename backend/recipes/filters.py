@@ -1,13 +1,12 @@
 from django_filters import CharFilter, FilterSet
-from django_filters.filters import BooleanFilter
 
 from .models import Ingredient, Recipe
 
 
 class RecipeFilter(FilterSet):
     tags = CharFilter(field_name='tags__slug', method='filter_tags')
-    is_favorited = BooleanFilter(method='filter_is_favorited')
-    is_in_shopping_cart = BooleanFilter(method='filter_is_in_shopping_cart')
+    is_favorited = CharFilter(method='filter_is_favorited')
+    is_in_shopping_cart = CharFilter(method='filter_is_in_shopping_cart')
 
     class Meta:
         model = Recipe
