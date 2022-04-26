@@ -122,8 +122,8 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
             recipe.tags.add(tag)
         return recipe
 
-    def validate(self, obj):
-        ingredients_data = obj['ingredients']
+    def validate(self, data):
+        ingredients_data = data['ingredients']
         ingredients_set = set()
         for ingredient in ingredients_data:
             if ingredient['amount'] < 0:
@@ -135,6 +135,7 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
                     'Ингредиент в рецепте не должен повторяться.'
                 )
             ingredients_set.add(ingredient['id'])
+        return data
 
     def update(self, instance, validated_data):
         ingredients_data = validated_data.pop('ingredients')
