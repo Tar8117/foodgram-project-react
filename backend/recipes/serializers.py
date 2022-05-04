@@ -126,15 +126,23 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
         ingredients_data = data['ingredients']
         ingredients_set = set()
         for ingredient in ingredients_data:
-            if ingredient['amount'] < 0:
+            if ingredient['amount'] <= 0:
                 raise serializers.ValidationError(
-                    'Количество должно быть >= 0'
+                    'Вес ингредиента должен быть больше 0'
                 )
             if ingredient['id'] in ingredients_set:
                 raise serializers.ValidationError(
                     'Ингредиент в рецепте не должен повторяться.'
                 )
             ingredients_set.add(ingredient['id'])
+        return data
+
+    def validate_cooking_time(self, data):
+        cooking_time = self.initial_data.get('cooking_time')
+        if not int(cooking_time) > 0:
+            raise serializers.ValidationError(
+                'Время приготовления должно быть больше 0'
+            )
         return data
 
     def update(self, instance, validated_data):
@@ -154,9 +162,8 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
                 ingredient=get_object_or_404(Ingredient, id=id),
                 recipe=instance, amount=amount
             )
-        for tag in tags_data:
-            instance.tags.add(tag)
         instance.save()
+        instance.tags.set(tags_data)
         return instance
 
     def to_representation(self, instance):
