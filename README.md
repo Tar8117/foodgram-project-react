@@ -87,6 +87,12 @@ http://178.154.198.108/admin
 
 http://postmediagram.ru/admin
 
+Доступ в админку:
+
+Логин: _oliver_
+
+Пароль: _oliver_
+
 Автор:
 github.com/Tar8117
 ---
