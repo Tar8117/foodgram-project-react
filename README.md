@@ -63,10 +63,19 @@ docker-compose exec backend python manage.py createsuperuser
 ```
 docker-compose exec backend python manage.py collectstatic --no-input
 ```
-Заполнить базу ингредиентами и тестовыми рецептами:
+Заполнить базу ингредиентами:
 ```
 docker-compose exec backend python manage.py load_ingredients
+```
+Заполнить базу тестовыми рецептами:
+```
 docker-compose exec backend python manage.py loaddata db.json
+```
+
+Если команда по заполнению базы рецептами не сработала, 
+то выполните следующую команду:
+```
+docker-compose exec backend python manage.py loaddata ./data/db.json
 ```
 Либо можно самому зарегистрировать пользователя и создать рецепты.
 
