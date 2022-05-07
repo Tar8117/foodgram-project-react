@@ -5,7 +5,7 @@ from recipes.models import Ingredient
 
 
 class Command(BaseCommand):
-    help = 'Загрузка данных в БД'
+    help = 'Выгрузка данных в БД'
 
     def handle(self, *args, **options):
         with open(
