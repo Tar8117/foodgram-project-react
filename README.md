@@ -86,13 +86,13 @@ docker-compose exec backend python manage.py loaddata ./data/db.json
 
 Доступно по адресам:
 
-http://178.154.198.108/
+http://51.250.29.152/
 
 http://postmediagram.ru/
 
 Админка доступна по адресам:
 
-http://178.154.198.108/admin
+http://51.250.29.152/admin
 
 http://postmediagram.ru/admin
 
