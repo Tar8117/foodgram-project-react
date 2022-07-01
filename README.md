@@ -6,9 +6,9 @@
 Foodgram включает в себя онлайн-сервис и API для него.
 
 ## Стек:
+- Python
 - PostgreSQL
 - Nginx
-- Python
 - Django
 - Git
 - Docker
