@@ -86,7 +86,7 @@ docker-compose exec backend python manage.py loaddata ./data/db.json
 
 Доступно по адресам:
 
-http://51.250.29.152/
+http://89.108.102.41/
 
 http://postmediagram.ru/
 
