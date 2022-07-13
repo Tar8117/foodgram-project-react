@@ -92,9 +92,9 @@ http://postmediagram.ru/
 
 Админка доступна по адресам:
 
-http://51.250.29.152/admin
+http://89.108.102.41/admin
 
-http://postmediagram.ru/admin
+http://postmediagram.ru/adminn
 
 Для доступа в админку нужно развернуть проект и создать суперпользователя.
 
