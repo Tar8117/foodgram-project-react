@@ -52,31 +52,36 @@ docker-compose up -d --build
 ```
 Сделать миграции:
 ```
-docker-compose exec backend python manage.py makemigrations --noinput
-docker-compose exec backend python manage.py migrate --noinput
+sudo docker-compose exec backend python manage.py makemigrations --noinput
+sudo docker-compose exec backend python manage.py migrate --noinput
 ```
 Создать суперпользователя:
 ```
-docker-compose exec backend python manage.py createsuperuser
+sudo docker-compose exec backend python manage.py createsuperuser
 ```
 Собрать статику:
 ```
-docker-compose exec backend python manage.py collectstatic --no-input
+sudo docker-compose exec backend python manage.py collectstatic --no-input
 ```
 Заполнить базу ингредиентами:
 ```
-docker-compose exec backend python manage.py load_ingredients
+sudo docker-compose exec backend python manage.py load_ingredients
 ```
 Заполнить базу тестовыми рецептами:
 ```
-docker-compose exec backend python manage.py loaddata db.json
+sudo docker-compose exec backend python manage.py loaddata db.json
 ```
 
 Если команда по заполнению базы рецептами не сработала, 
 то выполните следующую команду:
 ```
-docker-compose exec backend python manage.py loaddata ./data/db.json
+sudo docker-compose exec backend python manage.py loaddata ./data/db.json
 ```
+Или эту команду:
+```
+sudo docker-compose exec backend python manage.py loaddata data/db.json
+```
+
 Либо можно самому зарегистрировать пользователя и создать рецепты.
 
 Также, необязательно запускать проект на своём сервере. Проект доступен
@@ -94,7 +99,7 @@ http://postmediagram.ru/
 
 http://89.108.102.41/admin
 
-http://postmediagram.ru/adminn
+http://postmediagram.ru/admin
 
 Для доступа в админку нужно развернуть проект и создать суперпользователя.
 
