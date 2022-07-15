@@ -88,18 +88,13 @@ sudo docker-compose exec backend python manage.py loaddata data/db.json
 по адресам, представленным ниже.
 
 ---
+Доступно по адресу(с ssl-сертификатом):
 
-Доступно по адресам:
+https://postmediagram.ru/
 
-http://89.108.102.41/
-
-http://postmediagram.ru/
-
-Админка доступна по адресам:
+Админка доступна по адресу:
 
 http://89.108.102.41/admin
-
-http://postmediagram.ru/admin
 
 Для доступа в админку нужно развернуть проект и создать суперпользователя.
 
